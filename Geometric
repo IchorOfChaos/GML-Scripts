@@ -1,0 +1,40 @@
+#region Circle()
+/// @description				This function causes circular motion around a centerpoint. 
+/// @description				Returns x & y coordinates.
+/// @param center_x				The x-coordinate of the center of the circle
+/// @param center_y				The y_coordinate of the center of the circle
+/// @param radius				The radius of the desired circle
+/// @param duration				The duration, in seconds, of each full rotation.
+/// @param {real} rot_dir		The direction of rotation, clockwise by default (-1 for CCW). 
+
+function Circle(center_x, center_y, radius, duration, rot_dir=1){
+	
+	// X & Y Coordinate can be parametrized as 
+	// x = center_x + (radius * cos(angle)
+	// y = center_y + (radius * sin(angle)
+	//(dcos & dsin should be used when angle is in degrees)
+
+	//Check to see if radius and duration are valid values
+	if radius < 0 || duration <= 0
+	{
+		return [center_x, center_y]
+	}
+	
+	//Find the angle as a fraction of 360 based on the time the game has been running
+	var angle = ((current_time * .001) / duration)*360
+	
+	//Handle rotation direction
+	if rot_dir == -1
+	{
+		angle = -angle
+	}
+	
+	//Find the x and y components
+	var _x = center_x + (radius * dcos(angle))
+	var _y = center_y + (radius * dsin(angle))
+	
+	//Return the values as a matrix
+	return [_x, _y]
+
+}
+#endregion
