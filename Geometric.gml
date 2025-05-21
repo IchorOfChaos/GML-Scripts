@@ -20,8 +20,8 @@ function Circle(center_x, center_y, radius, duration, rot_dir=1){
 		return [center_x, center_y]
 	}
 	
-	//Find the angle as a fraction of 360 based on the time the game has been running
-	var angle = ((current_time * .001) / duration)*360
+	//Find the angle (0 to 360) based on the time the game has been running
+	var angle = (((current_time * .001) / duration)*360) mod 360
 	
 	//Handle rotation direction
 	if rot_dir == -1
